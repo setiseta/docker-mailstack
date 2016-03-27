@@ -1,4 +1,5 @@
 #!/bin/bash
+source ./env/db.env
 echo "---------------------------------------"
 echo "This script generates a new mail user / mailbox"
 echo "EMail address is the same as the username"
@@ -20,7 +21,7 @@ SQL="UPDATE mail_user set password = '$crypted' WHERE email =  '$mail';"
 
 echo ""
 echo "Now we insert into db. you need to type the DB Root pwd"
-result=$(docker exec -it mailstack-db mysql -p mailstack -e "$SQL")
+result=$(docker exec -it mailstack-db mysql -p$MYSQL_ROOT_PASSWORD $MYSQL_DATABASE -e "$SQL")
 
 if [[ $? == 0 ]]; then
 	echo "EMail / User successful created"
