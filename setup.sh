@@ -72,6 +72,27 @@ echo "generating rspamd password hashes"
 
 } &> /dev/null
 
+echo "generate db schema"
+docker-compose up -d mysql
+prog="docker exec -it mailstack-db mysqladmin -p$MYSQL_ROOT_PASSWORD status"
+timeout=60
+echo "Waiting for database server to accept connections"
+
+while ! ${prog} >/dev/null 2>&1
+do
+        timeout=$(expr $timeout - 1)
+        if [ $timeout -eq 0 ]; then
+                printf "\nCould not connect to database server. Aborting...\n"
+                exit 1
+        fi
+        printf "."
+        sleep 1
+done
+{
+    curl -L https://raw.githubusercontent.com/setiseta/docker-mailstack/master/structure.sql -o ./data/mysql/structure.sql
+    docker exec -it mailstack-db bash -c "mysql -p$MYSQL_ROOT_PASSWORD $MYSQL_DATABASE < /var/lib/mysql/structure.sql"
+} &> /dev/null
+
 echo "starting mailstack..."
 docker-compose up -d
 

@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS mail_forward (
-	`id` int(11) NOT NULL AUTOINCREMENT,
+	`id` int(11) NOT NULL AUTO_INCREMENT,
 	`email` varchar(255) NOT NULL DEFAULT '',
 	`destination` varchar(255) NOT NULL DEFAULT '',
 	PRIMARY KEY (`id`),
@@ -12,8 +12,7 @@ CREATE TABLE IF NOT EXISTS mail_user (
 	`password` varchar(128) NOT NULL DEFAULT '',
 	`quota` bigint(13) NOT NULL DEFAULT '0',
 	PRIMARY KEY (`id`),
-	UNIQUE KEY `email` (`email`),
-	KEY `domain` (`domain`)
+	UNIQUE KEY `email` (`email`)
 ) DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS domains (

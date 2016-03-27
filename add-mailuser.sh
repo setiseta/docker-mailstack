@@ -1,6 +1,6 @@
 #!/bin/bash
 source ./env/db.env
-if [[ -z "$1" || -z "$2"]]; then
+if [[ -z "$1" || -z "$2" ]]; then
 	echo "---------------------------------------"
 	echo "This script generates a new mail user / mailbox"
 	echo "EMail address is the same as the username"
