@@ -21,7 +21,7 @@ fi
 
 pwdcrypted=$(docker exec -it mailstack-dovecot doveadm pw -s SHA512-CRYPT -p $pwd)
 #crypted=${pwdcrypted#\{SHA512-CRYPT\}}
-crypted=$(echo "$pwdcrypted" | xargs)
+crypted=$(echo "$pwdcrypted" | tr -d $'\r' | cat -v)
 SQL="INSERT INTO mail_user (email, password) VALUES ('$mail', '$crypted');"
 
 echo ""
