@@ -91,6 +91,7 @@ done
 {
     curl -L https://raw.githubusercontent.com/setiseta/docker-mailstack/master/structure.sql -o ./data/mysql/structure.sql
     docker exec -it mailstack-db bash -c "mysql -p$MYSQL_ROOT_PASSWORD $MYSQL_DATABASE < /var/lib/mysql/structure.sql"
+    docker-compose down -v
 } &> /dev/null
 
 echo ""
