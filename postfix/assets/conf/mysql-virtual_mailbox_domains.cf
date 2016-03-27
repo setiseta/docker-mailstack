@@ -1,0 +1,5 @@
+user = {{ DB_USER }}
+password = {{ DB_PASS }}
+dbname = {{ DB_NAME }}
+hosts = {{ DB_HOST }}
+query = SELECT domain FROM domains WHERE domain = '%s' AND isemaildomain = 1

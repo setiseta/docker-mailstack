@@ -1,0 +1,5 @@
+user = {{ DB_USER }}
+password = {{ DB_PASS }}
+dbname = {{ DB_NAME }}
+hosts = {{ DB_HOST }}
+query = SELECT destination FROM mail_forward WHERE email = '%s' AND trim(destination) <> ''
