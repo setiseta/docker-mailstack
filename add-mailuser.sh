@@ -19,8 +19,8 @@ if [[ $mail == "" || $pwd == "" ]]; then
 	exit 1
 fi
 
-pwdcrypted=$(docker exec -it mailstack-dovecot doveadm pw -s SHA512-CRYPT -p $pwd)
-crypted=${pwdcrypted#\{SHA512-CRYPT\}}
+crypted=$(docker exec -it mailstack-dovecot doveadm pw -s SHA512-CRYPT -p $pwd)
+#crypted=${pwdcrypted#\{SHA512-CRYPT\}}
 SQL="INSERT INTO mail_user (email, password) VALUES ('$mail', '$crypted');"
 
 echo ""
