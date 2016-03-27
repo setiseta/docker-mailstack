@@ -93,7 +93,8 @@ done
     docker exec -it mailstack-db bash -c "mysql -p$MYSQL_ROOT_PASSWORD $MYSQL_DATABASE < /var/lib/mysql/structure.sql"
 } &> /dev/null
 
-echo "starting mailstack..."
+echo echo ""
+"starting mailstack..."
 docker-compose up -d
 
 echo ""
@@ -105,6 +106,7 @@ echo ""
 echo "Setup Mailbox: postmaster@$MAIN_DOMAIN"
 ./add-mailuser.sh postmaster@$MAIN_DOMAIN $postmasterpw
 
+echo ""
 echo "setup complete"
 echo "==============================="
 echo "Config infos:"

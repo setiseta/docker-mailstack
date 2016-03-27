@@ -14,8 +14,8 @@ if [[ $mail == "" || $pwd == "" ]]; then
 	exit 1
 fi
 
-crypted=$(docker exec -it mailstack-dovecot doveadm pw -s SHA512-CRYPT -p $pwd)
-echo $crypted
+pwdcrypted=$(docker exec -it mailstack-dovecot doveadm pw -s SHA512-CRYPT -p $pwd)
+crypted=${pwdcrypted#\{SHA512-CRYPT\}}
 
 SQL="UPDATE mail_user set password = '$crypted' WHERE email =  '$mail';"
 
