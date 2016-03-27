@@ -16,6 +16,7 @@ fi
 
 crypted=$(docker exec -it mailstack-dovecot doveadm pw -s SHA512-CRYPT -p $pwd)
 #crypted=${pwdcrypted#\{SHA512-CRYPT\}}
+crypted=$(echo "$pwdcrypted" | xargs)
 
 SQL="UPDATE mail_user set password = '$crypted' WHERE email =  '$mail';"
 
