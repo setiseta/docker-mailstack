@@ -19,4 +19,4 @@ COPY assets/conf/ /etc/rspamd/
 
 EXPOSE 11333
 EXPOSE 11334
-CMD /init.sh; rspamd -f -u _rspamd -g _rspamd
+CMD /init.sh; rspamd -u _rspamd -g _rspamd; rsyslogd -n
