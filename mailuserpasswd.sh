@@ -1,12 +1,17 @@
 #!/bin/bash
 source ./env/db.env
-echo "---------------------------------------"
-echo "This script generates a new mail user / mailbox"
-echo "EMail address is the same as the username"
-echo "---------------------------------------"
-read -p "EMail: " mail
-read -s -p "Password: " pwd
-echo ""
+if [[ -z "$1" || -z "$2" ]]; then
+	echo "---------------------------------------"
+	echo "This script updates password of existing mailbox"
+	echo "EMail address is the same as the username"
+	echo "---------------------------------------"
+	read -p "EMail: " mail
+	read -s -p "Password: " pwd
+	echo ""
+else
+	mail=$1
+	pwd=$2
+fi
 
 if [[ $mail == "" || $pwd == "" ]]; then
 	echo "Error---"
@@ -15,7 +20,6 @@ if [[ $mail == "" || $pwd == "" ]]; then
 fi
 
 pwdcrypted=$(docker exec -it mailstack-dovecot doveadm pw -s SHA512-CRYPT -p $pwd)
-#crypted=${pwdcrypted#\{SHA512-CRYPT\}}
 crypted=$(echo "$pwdcrypted" | tr -d $'\r' | cat -v)
 
 SQL="UPDATE mail_user set password = '$crypted' WHERE email =  '$mail';"

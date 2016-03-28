@@ -20,13 +20,13 @@ if [[ $mail == "" || $pwd == "" ]]; then
 fi
 
 pwdcrypted=$(docker exec -it mailstack-dovecot doveadm pw -s SHA512-CRYPT -p $pwd)
-#crypted=${pwdcrypted#\{SHA512-CRYPT\}}
 crypted=$(echo "$pwdcrypted" | tr -d $'\r' | cat -v)
-SQL="INSERT INTO mail_user (email, password) VALUES ('$mail', '$crypted');"
 
 echo ""
-#echo "Now we insert into db. you need to type the DB Root pwd"
-result=$(docker exec -it mailstack-db mysql -p$MYSQL_ROOT_PASSWORD $MYSQL_DATABASE -e "$SQL")
+{
+	SQL="INSERT INTO mail_user (email, password) VALUES ('$mail', '$crypted');"
+	result=$(docker exec -it mailstack-db mysql -p$MYSQL_ROOT_PASSWORD $MYSQL_DATABASE -e "$SQL")
+} &> /dev/null
 
 if [[ $? == 0 ]]; then
 	echo "EMail / User successful created"
