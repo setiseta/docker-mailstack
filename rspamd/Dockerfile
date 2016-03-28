@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV UBUNTU_NAME wily
 
 COPY assets/init.sh /init.sh
-RUN apt-get update && apt-get install -y wget && \
+RUN apt-get update && apt-get install -y wget rsyslog && \
     wget -O- https://rspamd.com/apt-stable/gpg.key | apt-key add - && \
     echo "deb http://rspamd.com/apt-stable/ $UBUNTU_NAME main" > /etc/apt/sources.list.d/rspamd.list && \
     echo "deb-src http://rspamd.com/apt-stable/ $UBUNTU_NAME main" >> /etc/apt/sources.list.d/rspamd.list && \
