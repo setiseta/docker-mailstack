@@ -1,19 +1,23 @@
 mysql:
     image: mysql
+    restart: always
     container_name: mailstack-db
     volumes:
         - ./data/mysql:/var/lib/mysql
     env_file: ./env/db.env
 redis:
     image: redis:alpine
+    restart: always
     container_name: mailstack-redis
     volumes:
         - ./data/redis:/data
 clamav:
     image: dinkel/clamavd
+    restart: always
     container_name: mailstack-clamav
 rspamd:
     image: seti/mailstack-rspamd
+    restart: always
     container_name: mailstack-rspamd
     env_file:
         - ./env/rspamd.env
@@ -21,6 +25,7 @@ rspamd:
         - redis:redis
 rmilter:
     image: seti/mailstack-rmilter
+    restart: always
     container_name: mailstack-rmilter
     volumes:
         - ./data/dkim:/dkimkeys
@@ -30,6 +35,7 @@ rmilter:
         - clamav:clamav
 dovecot:
     image: seti/mailstack-dovecot
+    restart: always
     container_name: mailstack-dovecot
     volumes:
         - /etc/ssl/docker:/certs
@@ -43,6 +49,7 @@ dovecot:
         - mysql:mysql
 postfix:
     image: seti/mailstack-postfix
+    restart: always
     container_name: mailstack-postfix
     volumes:
         - /etc/ssl/docker:/certs
