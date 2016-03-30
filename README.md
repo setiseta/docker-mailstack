@@ -9,7 +9,7 @@ Last Changes
 - Add MAILBOX_FORMAT in env/config.env
  - Default: mdbox
  - Possible: maildir, mdbox, sdbox, mbox
- - Old Default: maildir
+ - Old Default: maildir(set this in your config.env if you already have set up the mailstack, and want to keep mails.)
 
 ---
 Info
