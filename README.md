@@ -4,6 +4,14 @@ Docker Mailstack
 Mailstack based on docker images with dovecot, postfix, rmilter, rspamd
 
 ---
+Last Changes
+===
+- Add MAILBOX_FORMAT in env/config.env
+ - Default: mdbox
+ - Possible: maildir, mdbox, sdbox, mbox
+ - Old Default: maildir
+
+---
 Info
 ===
 - questions/issues/pr/optimizations are welcome
@@ -16,7 +24,7 @@ Requirements
 - Docker / Docker-Engine installed:
  - https://docs.docker.com/engine/installation/
  - or from your distros repo if it has a new enough docker version
-- Docker Compose installed:
+- Docker Compose installed(Version 1.6.2+):
  - https://docs.docker.com/compose/install/
 
 ---

@@ -8,6 +8,7 @@ echo "setup not yet implemented here"
 echo "-------------------------------"
 read -p "First/Main domain: " MAIN_DOMAIN
 read -p "Mailserver hostname (eg. mail.example.com): " HOSTNAME
+read -p "MAILBOX_FORMAT(mdbox): " MAILBOX_FORMAT
 echo "-------------------------------"
 echo "DB Container Setup"
 read -p "MySQL Root pw: " MYSQL_ROOT_PASSWORD
@@ -33,6 +34,10 @@ start=$( echo "$start" | awk '{print tolower($0)}' )
 if [[ "$start" == "n" ]]; then
     echo "aborting.."
     exit 1
+fi
+
+if [[ "$MAILBOX_FORMAT" == "" ]]; then
+    MAILBOX_FORMAT="mdbox"
 fi
 
 if [[ "$MYSQL_USER" == "" ]]; then
@@ -64,7 +69,7 @@ echo "generating rspamd password hashes"
     RSPAMD_PWDADMIN=$( docker exec -it mailstack-rspamd rspamadm pw --encrypt -p $rspamadminpw )
     docker-compose down -v
 
-    export MAIN_DOMAIN HOSTNAME MYSQL_ROOT_PASSWORD MYSQL_USER MYSQL_PASSWORD MYSQL_DATABASE LETSENCRYPT_EMAIL RSPAMD_PWD RSPAMD_PWDADMIN
+    export MAIN_DOMAIN HOSTNAME MAILBOX_FORMAT MYSQL_ROOT_PASSWORD MYSQL_USER MYSQL_PASSWORD MYSQL_DATABASE LETSENCRYPT_EMAIL RSPAMD_PWD RSPAMD_PWDADMIN
 
     for VARIABLE in `env | cut -f1 -d=`; do
         sed -i "s={{ $VARIABLE }}=${!VARIABLE}=g" ./env/*.env

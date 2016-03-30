@@ -1,5 +1,8 @@
 #!/bin/bash
-
+if [[ "$MAILBOX_FORMAT" == "" ]]; then
+    MAILBOX_FORMAT="mdbox"
+	export MAILBOX_FORMAT
+fi
 #DB Setup
 DB_TYPE=${DB_TYPE:-}
 DB_HOST=${DB_HOST:-}
