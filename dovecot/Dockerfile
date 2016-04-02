@@ -1,15 +1,15 @@
-FROM alpine
+FROM ubuntu:15.10
 MAINTAINER Seti <seti@setadesign.net>
 
 COPY assets/init.sh /init.sh
-RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-	echo "@community http://dl-3.alpinelinux.org/alpine/edge/community/" >> /etc/apk/repositories && \
-	apk add --update \
-		dovecot bash \
+RUN apt-get update && \
+	apt-get install \
+		dovecot-core \
 		dovecot-mysql mysql-client \
-		dovecot-pigeonhole-plugin@community \
-		dovecot-antispam-plugin@testing && \
-	rm -rf /var/cache/apk/* && \
+		dovecot-managesieved dovecot-lmtpd dovecot-imapd \
+		dovecot-antispam && \
+	apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
 	chmod 0755 /init.sh
 
 COPY assets/conf /etc/dovecot
