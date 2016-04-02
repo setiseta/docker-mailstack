@@ -13,4 +13,4 @@ noc: root
 security: root
 
 # change this to a valid e-mail address you can access
-root:               {{POSTMASTER }}@{{ DOMAIN }}
+root:               {{ POSTMASTER }}@{{ DOMAIN }}
