@@ -1,3 +1,12 @@
+automx:
+    image: seti/mailstack-automx
+    restart: always
+    container_name: mailstack-automx
+    volumes:
+        - /etc/ssl/docker:/certs
+    env_file:
+        - ./env/config.env
+        - ./env/automx.env
 mysql:
     image: mysql
     restart: always

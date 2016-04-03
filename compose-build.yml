@@ -15,3 +15,7 @@ services:
         build: ./postfix
         image: seti/mailstack-postfix
         container_name: mailstack-postfix
+    automx:
+        build: ./automx
+        image: seti/mailstack-automx
+        container_name: mailstack-automx

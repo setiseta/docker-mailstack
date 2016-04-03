@@ -6,6 +6,12 @@ Mailstack based on docker images with dovecot, postfix, rmilter, rspamd
 ---
 Last Changes
 ===
+- Added automx Container for Client auto Config.
+ - if you update get first the automx.env and set it up for your env
+ - add the automx part from the docker-compose.yml to your docker-compose.yml
+ - need dns entry for:
+   - autoconfig.yourdomain.tld
+   - autodiscover.yourdomain.tld
 - Add MAILBOX_FORMAT in env/config.env
  - Default: mdbox
  - Possible: maildir, mdbox, sdbox, mbox

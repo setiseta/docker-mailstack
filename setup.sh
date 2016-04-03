@@ -50,6 +50,7 @@ fi
 echo "downloading files..."
 {
     mkdir env
+    curl https://raw.githubusercontent.com/setiseta/docker-mailstack/master/env/automx.env -o env/automx.env
     curl https://raw.githubusercontent.com/setiseta/docker-mailstack/master/env/config.env -o env/config.env
     curl https://raw.githubusercontent.com/setiseta/docker-mailstack/master/env/db.env -o env/db.env
     curl https://raw.githubusercontent.com/setiseta/docker-mailstack/master/env/rspamd.env -o env/rspamd.env
