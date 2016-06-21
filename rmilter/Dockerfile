@@ -1,8 +1,8 @@
-FROM ubuntu:15.10
+FROM ubuntu:16.04
 MAINTAINER Seti <seti@setadesign.net>
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV UBUNTU_NAME wily
+ENV UBUNTU_NAME xenial
 COPY assets/keygen.sh /
 COPY assets/init.sh /
 RUN apt-get update && apt-get install -y wget opendkim \
