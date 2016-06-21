@@ -101,3 +101,4 @@ docker-compose restart rspamd
 
 ### Postfix Startup Customizing
 - map a init.custom.sh
+- it will be executed befor anything is executed from the init.sh script
