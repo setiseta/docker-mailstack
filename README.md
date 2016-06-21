@@ -98,3 +98,6 @@ chmod 0755 ./mailuserpasswd.sh
 ./mailuserpasswd.sh
 docker-compose restart rspamd
 ```
+
+### Postfix Startup Customizing
+- map a init.custom.sh

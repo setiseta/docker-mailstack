@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ -e /init.custom.sh]; then
+    source /init.custom.sh
+fi
+
 #DB Setup
 DB_TYPE=${DB_TYPE:-}
 DB_HOST=${DB_HOST:-}
