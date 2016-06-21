@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y wget rsyslog && \
     chmod 0755 /init.sh
 
 COPY assets/conf/ /etc/rspamd/
+COPY assets/rsyslog.conf /etc/rsyslog.conf
 
 EXPOSE 11333
 EXPOSE 11334
