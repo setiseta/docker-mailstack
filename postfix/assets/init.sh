@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -e /init.custom.sh]; then
+if [ -e /init.custom.sh ]; then
     source /init.custom.sh
 fi
 
