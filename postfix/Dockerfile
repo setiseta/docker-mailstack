@@ -8,7 +8,7 @@ RUN apk add --update postfix postfix-mysql rsyslog bash mysql-client && \
 #END for testing and building \
 	rm -rf /vat/cache/apk/*
 
-COPY assets/conf /etc/postfix
+COPY assets/conf /etc/postfix-template
 COPY assets/rsyslog.conf /etc/rsyslog.conf
 COPY assets/init.sh /init.sh
 

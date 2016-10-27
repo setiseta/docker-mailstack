@@ -69,6 +69,7 @@ do
 done
 echo "DB onnection is ok"
 
+cp -rf /etc/dovecot-template/* /etc/dovecot/*
 # Substitute configuration
 for VARIABLE in `env | cut -f1 -d=`; do
 	sed -i "s={{ $VARIABLE }}=${!VARIABLE}=g" /etc/dovecot/*.conf

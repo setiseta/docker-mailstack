@@ -72,7 +72,7 @@ do
 done
 echo "DB onnection is ok"
 
-
+cp -rf /etc/postfix-template/* /etc/postfix/*
 # Substitute configuration
 for VARIABLE in `env | cut -f1 -d=`; do
   sed -i "s={{ $VARIABLE }}=${!VARIABLE}=g" /etc/postfix/*.cf
