@@ -12,7 +12,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
 	chmod 0755 /init.sh
 
-COPY assets/conf /etc/dovecot-template
+COPY assets/conf /etc/dovecottemplate
 COPY assets/sieve /var/lib/dovecot
 
 EXPOSE 143
