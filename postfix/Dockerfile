@@ -12,15 +12,7 @@ COPY assets/conf /etc/postfixtemplate
 COPY assets/rsyslog.conf /etc/rsyslog.conf
 COPY assets/init.sh /init.sh
 
-RUN chmod 0644 "/etc/postfix/main.cf" && \
-	chown root:root "/etc/postfix/main.cf" && \
-	chmod 0640 "/etc/postfix/mysql-virtual_alias_maps.cf" && \
-	chown root:postfix "/etc/postfix/mysql-virtual_alias_maps.cf" && \
-	chmod 0640 "/etc/postfix/mysql-virtual_mailbox_domains.cf" && \
-	chown root:postfix "/etc/postfix/mysql-virtual_mailbox_domains.cf" && \
-	chmod 0640 "/etc/postfix/mysql-virtual_mailbox_maps.cf" && \
-	chown root:postfix "/etc/postfix/mysql-virtual_mailbox_maps.cf" && \
-	chmod 0755 /init.sh && \
+RUN chmod 0755 /init.sh && \
 	mv /var/spool/postfix /postfixtemplate
 
 EXPOSE 25

@@ -73,6 +73,14 @@ done
 echo "DB onnection is ok"
 
 cp -rf /etc/postfixtemplate/* /etc/postfix/*
+chmod 0644 "/etc/postfix/main.cf"
+chown root:root "/etc/postfix/main.cf"
+chmod 0640 "/etc/postfix/mysql-virtual_alias_maps.cf"
+chown root:postfix "/etc/postfix/mysql-virtual_alias_maps.cf"
+chmod 0640 "/etc/postfix/mysql-virtual_mailbox_domains.cf"
+chown root:postfix "/etc/postfix/mysql-virtual_mailbox_domains.cf"
+chmod 0640 "/etc/postfix/mysql-virtual_mailbox_maps.cf"
+chown root:postfix "/etc/postfix/mysql-virtual_mailbox_maps.cf"
 # Substitute configuration
 for VARIABLE in `env | cut -f1 -d=`; do
   sed -i "s={{ $VARIABLE }}=${!VARIABLE}=g" /etc/postfix/*.cf
