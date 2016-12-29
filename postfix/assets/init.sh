@@ -72,7 +72,7 @@ do
 done
 echo "DB onnection is ok"
 
-cp -rf /etc/postfixtemplate/* /etc/postfix/*
+cp -rf /etc/postfixtemplate/* /etc/postfix/
 chmod 0644 "/etc/postfix/main.cf"
 chown root:root "/etc/postfix/main.cf"
 chmod 0640 "/etc/postfix/mysql-virtual_alias_maps.cf"
