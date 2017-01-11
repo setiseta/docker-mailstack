@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:15.10
 MAINTAINER Seti <seti@setadesign.net>
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -7,7 +7,7 @@ ENV AUTOMX_VERSION 1.1.0_beta1
 COPY assets/init.sh /init.sh
 
 RUN apt-get update && \
-	apt-get install -y wget apache2 libapache2-mod-wsgi-py3 python3-dateutil python-ipaddr openssl python3-lxml && \
+	apt-get install -y wget apache2 libapache2-mod-wsgi-py3 python3-dateutil python-ipaddr openssl python3-lxml bsdmainutils dnsutils && \
 	mkdir -p /usr/lib/automx && \
 	a2enmod wsgi && a2dissite 000-default && \
 	wget https://github.com/sys4/automx/archive/v$AUTOMX_VERSION.tar.gz && \
