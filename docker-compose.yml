@@ -28,6 +28,9 @@ rspamd:
     image: seti/mailstack-rspamd
     restart: always
     container_name: mailstack-rspamd
+    volumes:
+        - ./data/rspamd:/var/lib/rspamd
+        - ./conf/rspamd/maps:/maps
     env_file:
         - ./env/rspamd.env
     links:

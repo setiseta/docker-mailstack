@@ -1,8 +1,5 @@
 greylist {
-    whitelisted_ip = 127.0.0.1,
-				192.168.1.1,
-				192.168.2.0/24,
-				172.17.0.0/16;
+  whitelisted_ip = file:///maps/whitelist.map
 }
 
 mx_check {
