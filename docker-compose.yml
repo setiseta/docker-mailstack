@@ -32,6 +32,7 @@ rspamd:
         - ./env/rspamd.env
     links:
         - redis:redis
+        - clamav
 rmilter:
     image: seti/mailstack-rmilter
     restart: always
