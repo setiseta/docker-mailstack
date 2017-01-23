@@ -5,10 +5,6 @@ greylist {
 				172.17.0.0/16;
 }
 
-dmarc {
-    reporting = true;
-}
-
 mx_check {
   # connection timeout in seconds
   #timeout = 1.0;
@@ -51,3 +47,7 @@ antivirus {
     whitelist = "/etc/rspamd/antivirus.wl";
   }
 }
+
+asn { }
+
+ip_score { }
