@@ -85,6 +85,9 @@ chown root:postfix "/etc/postfix/mysql-virtual_mailbox_maps.cf"
 for VARIABLE in `env | cut -f1 -d=`; do
   sed -i "s={{ $VARIABLE }}=${!VARIABLE}=g" /etc/postfix/*.cf
   sed -i "s={{ $VARIABLE }}=${!VARIABLE}=g" /etc/postfix/aliases
+  if [ "${!VARIABLE}" == "true" ]; then
+      sed -i "s=#$VARIABLE#==g" /etc/postfix/*.cf
+  fi
 done
 
 # move template to mounted volume
