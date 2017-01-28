@@ -93,4 +93,4 @@ smtpd_milters = { inet:rmilter:9900, protocol=6, default_action=accept }
 ################################
 ## Content Filter
 ###############################
-#AMAVIS#content_filter=smtp-amavis:[amavis]:10024
+#AMAVIS#content_filter=amavisfeed:[amavis]:10024

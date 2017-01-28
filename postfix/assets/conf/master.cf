@@ -38,3 +38,28 @@ scache    unix  -       -       n       -       1       scache
 # Dovecot LDA
 #dovecot	  unix	-	n	n	-	-	pipe
 #	flags=DRhu user=vmail:vmail argv=/usr/lib/dovecot/deliver -d ${recipient}
+
+#amavis settings
+#AMAVIS#amavisfeed unix  -       -       n       -      2        smtp
+#AMAVIS#    -o smtp_data_done_timeout=1200
+#AMAVIS#    -o smtp_send_xforward_command=yes
+#AMAVIS#    -o disable_dns_lookups=yes
+
+#AMAVIS#*:10025 inet n  -       n       -       -       smtpd
+#AMAVIS#    -o content_filter=
+#AMAVIS#    -o local_recipient_maps=
+#AMAVIS#    -o relay_recipient_maps=
+#AMAVIS#    -o smtpd_delay_reject=no
+#AMAVIS#    -o smtpd_restriction_classes=
+#AMAVIS#    -o smtpd_client_restrictions=
+#AMAVIS#    -o smtpd_helo_restrictions=
+#AMAVIS#    -o smtpd_recipient_restrictions=permit_mynetworks,reject
+#AMAVIS#    -o smtpd_sender_restrictions=
+#AMAVIS#    -o smtpd_data_restrictions=reject_unauth_pipelining
+#AMAVIS#    -o smtpd_end_of_data_restrictions=
+#AMAVIS#    -o smtpd_error_sleep_time=0
+#AMAVIS#    -o smtpd_soft_error_limit=1001
+#AMAVIS#    -o smtpd_hard_error_limit=1000
+#AMAVIS#    -o smtpd_client_connection_count_limit=0
+#AMAVIS#    -o smtpd_client_connection_rate_limit=0
+#AMAVIS#    -o receive_override_options=no_header_body_checks,no_unknown_recipient_checks
