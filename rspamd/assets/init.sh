@@ -21,3 +21,6 @@ chown 106:108 /var/lib/rspamd -R
 chown 106:108 /maps -R
 
 rm -f /var/run/rsyslogd.pid
+
+rspamd -u _rspamd -g _rspamd -f
+#rsyslogd -n
