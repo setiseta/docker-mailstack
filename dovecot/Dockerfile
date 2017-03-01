@@ -6,7 +6,7 @@ RUN apt-get update && \
 	apt-get install -y \
 		dovecot-core \
 		dovecot-mysql mysql-client \
-		dovecot-managesieved dovecot-lmtpd dovecot-imapd \
+		dovecot-managesieved dovecot-lmtpd dovecot-imapd dovecot-pop3d \
 		dovecot-antispam && \
 	apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
@@ -17,5 +17,7 @@ COPY assets/sieve /var/lib/dovecot
 
 EXPOSE 143
 EXPOSE 993
+EXPOSE 110
+EXPOSE 995
 
 CMD ["/init.sh"]
