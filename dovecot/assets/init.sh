@@ -78,7 +78,7 @@ done
 
 
 # Fix permissions
-chown -R mail:mail /mail
+#chown -R mail:mail /mail
 chown -R mail:mail /var/lib/dovecot
 
 # Run dovecot
