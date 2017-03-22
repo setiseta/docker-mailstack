@@ -45,21 +45,21 @@ scache    unix  -       -       n       -       1       scache
 #AMAVIS#    -o smtp_send_xforward_command=yes
 #AMAVIS#    -o disable_dns_lookups=yes
 
-#AMAVIS#0.0.0.0:10025 inet n  -       n       -       -       smtpd
-#AMAVIS#    -o content_filter=
-#AMAVIS#    -o local_recipient_maps=
-#AMAVIS#    -o relay_recipient_maps=
-#AMAVIS#    -o smtpd_delay_reject=no
-#AMAVIS#    -o smtpd_restriction_classes=
-#AMAVIS#    -o smtpd_client_restrictions=
-#AMAVIS#    -o smtpd_helo_restrictions=
-#AMAVIS#    -o smtpd_recipient_restrictions=permit_mynetworks,reject
-#AMAVIS#    -o smtpd_sender_restrictions=
-#AMAVIS#    -o smtpd_data_restrictions=reject_unauth_pipelining
-#AMAVIS#    -o smtpd_end_of_data_restrictions=
-#AMAVIS#    -o smtpd_error_sleep_time=0
-#AMAVIS#    -o smtpd_soft_error_limit=1001
-#AMAVIS#    -o smtpd_hard_error_limit=1000
-#AMAVIS#    -o smtpd_client_connection_count_limit=0
-#AMAVIS#    -o smtpd_client_connection_rate_limit=0
-#AMAVIS#    -o receive_override_options=no_header_body_checks,no_unknown_recipient_checks,no_milters
+0.0.0.0:10025 inet n  -       n       -       -       smtpd
+    -o content_filter=
+    -o local_recipient_maps=
+    -o relay_recipient_maps=
+    -o smtpd_delay_reject=no
+    -o smtpd_restriction_classes=
+    -o smtpd_client_restrictions=
+    -o smtpd_helo_restrictions=
+    -o smtpd_recipient_restrictions=permit_mynetworks,reject
+    -o smtpd_sender_restrictions=
+    -o smtpd_data_restrictions=reject_unauth_pipelining
+    -o smtpd_end_of_data_restrictions=
+    -o smtpd_error_sleep_time=0
+    -o smtpd_soft_error_limit=1001
+    -o smtpd_hard_error_limit=1000
+    -o smtpd_client_connection_count_limit=0
+    -o smtpd_client_connection_rate_limit=0
+    -o receive_override_options=no_header_body_checks,no_unknown_recipient_checks,no_milters
