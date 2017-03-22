@@ -1,78 +1,134 @@
-automx:
-    image: seti/mailstack-automx
-    restart: always
-    container_name: mailstack-automx
-    volumes:
-        - /etc/ssl/docker:/certs
-    env_file:
-        - ./env/config.env
-        - ./env/automx.env
-mysql:
-    image: mysql
-    restart: always
-    container_name: mailstack-db
-    volumes:
-        - ./data/mysql:/var/lib/mysql
-    env_file: ./env/db.env
-redis:
-    image: redis:alpine
-    restart: always
-    container_name: mailstack-redis
-    volumes:
-        - ./data/redis:/data
-clamav:
-    image: dinkel/clamavd
-    restart: always
-    container_name: mailstack-clamav
-rspamd:
-    image: seti/mailstack-rspamd
-    restart: always
-    container_name: mailstack-rspamd
-    volumes:
-        - ./data/rspamd:/var/lib/rspamd
-        - ./conf/rspamd/maps:/maps
-    env_file:
-        - ./env/rspamd.env
-    links:
-        - redis:redis
-        - clamav
-rmilter:
-    image: seti/mailstack-rmilter
-    restart: always
-    container_name: mailstack-rmilter
-    volumes:
-        - ./data/dkim:/dkimkeys
-    links:
-        - redis:redis
-        - rspamd:rspamd
-        - clamav:clamav
-dovecot:
-    image: seti/mailstack-dovecot
-    restart: always
-    container_name: mailstack-dovecot
-    volumes:
-        - /etc/ssl/docker:/certs
-        - ./data/mail:/mail
-    env_file:
-        - ./env/config.env
-    ports:
-        - "143:143"
-        - "993:993"
-    links:
-        - mysql:mysql
-postfix:
-    image: seti/mailstack-postfix
-    restart: always
-    container_name: mailstack-postfix
-    volumes:
-        - /etc/ssl/docker:/certs
-        - ./data/postfix:/var/spool/postfix
-    env_file:
-        - ./env/config.env
-    ports:
-        - "25:25"
-        - "587:587"
-    links:
-        - mysql:mysql
-        - dovecot:dovecot
-        - rmilter:rmilter
+version: '3.1'
+services:
+    automx:
+        image: seti/mailstack-automx
+        restart: always
+        container_name: mailstack-automx
+        volumes:
+            - /etc/ssl/docker:/certs
+        env_file:
+            - ./env/config.env
+            - ./env/automx.env
+        networks:
+            - frontend
+            - default
+
+    mysql:
+        image: mysql
+        restart: always
+        container_name: mailstack-db
+        volumes:
+            - ./data/mysql:/var/lib/mysql
+        env_file: ./env/db.env
+
+    redis:
+        image: redis:alpine
+        restart: always
+        container_name: mailstack-redis
+        volumes:
+            - ./data/redis:/data
+
+    clamav:
+        image: dinkel/clamavd
+        restart: always
+        container_name: mailstack-clamav
+
+    rspamd:
+        image: seti/mailstack-rspamd
+        restart: always
+        container_name: mailstack-rspamd
+        volumes:
+            - ./data/rspamd:/var/lib/rspamd
+            - ./conf/rspamd/maps:/maps
+        env_file:
+            - ./env/rspamd.env
+        links:
+            - redis:redis
+            - clamav
+        networks:
+            - frontend
+            - default
+
+    rmilter:
+        image: seti/mailstack-rmilter
+        restart: always
+        container_name: mailstack-rmilter
+        volumes:
+            - ./data/dkim:/dkimkeys
+        links:
+            - redis:redis
+            - rspamd:rspamd
+            - clamav:clamav
+
+    amavis:
+        image: spacecowboy/amavis
+        hostname: amavis.{{ MAIN_DOMAIN }}
+        restart: always
+        volumes:
+            - ./data/amavis/spam_bayes:/var/spamassassin/bayes_db
+            - ./conf/amavis/setarules.cf:/etc/spamassassin/setarules.cf:ro
+            - ./conf/amavis/50-user:/etc/amavis/conf.d/50-user
+            - ./data/junk:/junk
+            - ./conf/amavis/learn.sh:/learn.sh
+        environment:
+            - myhostname=amavis.{{ MAIN_DOMAIN }}
+            - mydomain={{ MAIN_DOMAIN }}
+
+    dovecot:
+        image: seti/mailstack-dovecot
+        restart: always
+        container_name: mailstack-dovecot
+        volumes:
+            - /etc/ssl/docker:/certs
+            - ./data/mail:/mail
+        env_file:
+            - ./env/config.env
+            - ./env/dbconnection.env
+        ports:
+            - "143:143"
+            - "993:993"
+        links:
+            - mysql:mysql
+
+    postfix:
+        image: seti/mailstack-postfix
+        restart: always
+        container_name: mailstack-postfix
+        volumes:
+            - /etc/ssl/docker:/certs
+            - ./data/postfix:/var/spool/postfix
+        env_file:
+            - ./env/config.env
+            - ./env/dbconnection.env
+        ports:
+            - "25:25"
+            - "587:587"
+        links:
+            - mysql:mysql
+            - dovecot:dovecot
+            - rmilter:rmilter
+
+    rainloop:
+        image: runningman84/rainloop
+        restart: always
+        volumes:
+            - ./data/rainloop:/var/www/html/data
+        environment:
+            - VIRTUAL_HOST=webmail.{{ MAIN_DOMAIN }}
+            - LETSENCRYPT_HOST=webmail.{{ MAIN_DOMAIN }}
+            - LETSENCRYPT_EMAIL={{ LETSENCRYPT_EMAIL }}
+            - VIRTUAL_PORT=80
+            - NGINX=1
+            - PHP_MAX_POST_SIZE=534M
+            - PHP_MAX_UPLOAD_SIZE=512M
+            - PHP_MAX_EXECUTION_ZIME=240
+            - APACHE_SERVER_ADMIN=postmaster@{{ MAIN_DOMAIN }}
+            - APACHE_SERVER_NAME={{ MAIN_DOMAIN }}
+        networks:
+            - frontend
+            - default
+
+networks:
+    frontend:
+        external:
+            name: nginx

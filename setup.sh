@@ -53,6 +53,7 @@ echo "downloading files..."
     curl https://raw.githubusercontent.com/setiseta/docker-mailstack/master/env/automx.env -o env/automx.env
     curl https://raw.githubusercontent.com/setiseta/docker-mailstack/master/env/config.env -o env/config.env
     curl https://raw.githubusercontent.com/setiseta/docker-mailstack/master/env/db.env -o env/db.env
+    curl https://raw.githubusercontent.com/setiseta/docker-mailstack/master/env/dbconnection.env -o env/dbconnection.env
     curl https://raw.githubusercontent.com/setiseta/docker-mailstack/master/env/rspamd.env -o env/rspamd.env
     curl https://raw.githubusercontent.com/setiseta/docker-mailstack/master/docker-compose.yml -o docker-compose.yml
     curl https://raw.githubusercontent.com/setiseta/docker-mailstack/master/rspamdpasswd.sh -o rspamdpasswd.sh
@@ -74,6 +75,7 @@ echo "generating rspamd password hashes"
 
     for VARIABLE in `env | cut -f1 -d=`; do
         sed -i "s={{ $VARIABLE }}=${!VARIABLE}=g" ./env/*.env
+        sed -i "s={{ $VARIABLE }}=${!VARIABLE}=g" ./docker-compose.yml
     done
 
 } &> /dev/null
