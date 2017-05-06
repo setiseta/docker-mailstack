@@ -70,8 +70,8 @@ done
 echo "DB onnection is ok"
 
 #LIMITS
-PROCESSLIMIT=${PROCESSLIMIT:100}
-CLIENTLIMIT=${CLIENTLIMIT:500}
+PROCESSLIMIT=${PROCESSLIMIT:-100}
+CLIENTLIMIT=${CLIENTLIMIT:-500}
 
 cp -rf /etc/dovecottemplate/* /etc/dovecot/
 # Substitute configuration
