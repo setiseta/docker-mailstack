@@ -43,7 +43,7 @@ services:
         env_file:
             - ./env/rspamd.env
         links:
-            - redis:redis
+            - redis
             - clamav
         networks:
             - frontend
@@ -56,9 +56,9 @@ services:
         volumes:
             - ./data/dkim:/dkimkeys
         links:
-            - redis:redis
-            - rspamd:rspamd
-            - clamav:clamav
+            - redis
+            - rspamd
+            - clamav
 
     amavis:
         image: spacecowboy/amavis
@@ -84,11 +84,14 @@ services:
         env_file:
             - ./env/config.env
             - ./env/dbconnection.env
+        environment:
+            - PROCESSLIMIT=100
+            - CLIENTLIMIT=500
         ports:
             - "143:143"
             - "993:993"
         links:
-            - mysql:mysql
+            - mysql
 
     postfix:
         image: seti/mailstack-postfix
@@ -104,9 +107,9 @@ services:
             - "25:25"
             - "587:587"
         links:
-            - mysql:mysql
-            - dovecot:dovecot
-            - rmilter:rmilter
+            - mysql
+            - dovecot
+            - rmilter
 
     rainloop:
         image: runningman84/rainloop

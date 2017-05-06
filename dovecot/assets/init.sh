@@ -69,6 +69,10 @@ do
 done
 echo "DB onnection is ok"
 
+#LIMITS
+PROCESSLIMIT=${CLIENTLIMIT:100}
+CLIENTLIMIT=${CLIENTLIMIT:500}
+
 cp -rf /etc/dovecottemplate/* /etc/dovecot/
 # Substitute configuration
 for VARIABLE in `env | cut -f1 -d=`; do

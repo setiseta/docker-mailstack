@@ -6,6 +6,11 @@ Mailstack based on docker images with dovecot, postfix, rmilter, rspamd
 ---
 Last Changes
 ===
+- Limit Configuration for Dovecot(06-05-2017):
+  - example in docker-compose.yml on github repo
+  - new environment Variables
+    - PROCESSLIMIT default 100
+    - CLIENTLIMIT default 500
 - Added automx Container for Client auto Config.
  - if you update get first the automx.env and set it up for your env
  - add the automx part from the docker-compose.yml to your docker-compose.yml
