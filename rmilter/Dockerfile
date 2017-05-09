@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM krallin/ubuntu-tini:16.04
 MAINTAINER Seti <seti@setadesign.net>
 
 ENV DEBIAN_FRONTEND noninteractive

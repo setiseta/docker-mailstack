@@ -1,7 +1,7 @@
 FROM alpine
 MAINTAINER Seti <seti@setadesign.net>
 
-RUN apk add --update postfix postfix-mysql rsyslog bash mysql-client && \
+RUN apk add --update --no-cache tini postfix postfix-mysql rsyslog bash mysql-client && \
 	mkdir /mail && chmod 0750 /mail && \
 #for testing and building  \
 	apk add --update nano && \
@@ -18,5 +18,6 @@ RUN chmod 0755 /init.sh && \
 EXPOSE 25
 EXPOSE 465
 EXPOSE 587
+ENTRYPOINT ["/sbin/tini", "--"]
 VOLUME ["/var/spool/postfix/"]
 CMD ["/init.sh"]
