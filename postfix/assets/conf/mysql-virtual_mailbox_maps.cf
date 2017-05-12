@@ -3,4 +3,4 @@ password = {{ DB_PASS }}
 dbname = {{ DB_NAME }}
 hosts = {{ DB_HOST }}
 expansion_limit = 1
-query = SELECT email FROM mail_user WHERE email = '%s'
+query = SELECT email FROM {{ MAIL_USER_TABLE }} WHERE email = '%s'

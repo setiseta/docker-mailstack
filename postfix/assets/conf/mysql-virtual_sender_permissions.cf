@@ -2,4 +2,4 @@ user = {{ DB_USER }}
 password = {{ DB_PASS }}
 dbname = {{ DB_NAME }}
 hosts = {{ DB_HOST }}
-query = SELECT DISTINCT email FROM mail_user WHERE email = '%s';
+query = SELECT DISTINCT email FROM {{ MAIL_USER_TABLE }} WHERE email = '%s';

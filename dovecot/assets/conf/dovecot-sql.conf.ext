@@ -5,12 +5,12 @@ default_pass_scheme = CRYPT
 # Return the user hashed password
 password_query = \
  SELECT password \
-   FROM mail_user \
+   FROM {{ MAIL_USER_TABLE }} \
   WHERE email = '%u'
 
 # Mostly get the user quota
 user_query = \
  SELECT \
 	CONCAT('*:storage=', quota, 'M') as quota_rule \
-   FROM mail_user \
+   FROM {{ MAIL_USER_TABLE }} \
   WHERE email = '%u'
