@@ -12,10 +12,6 @@ DB_NAME=${DB_NAME:-}
 DB_USER=${DB_USER:-}
 DB_PASS=${DB_PASS:-}
 
-#Table setup
-MAIL_FORWARD_TABLE="mail_forward"
-MAIL_USER_TABLE="mail_user"
-
 if [ -n "${MYSQL_PORT_3306_TCP_ADDR}" ]; then
         DB_TYPE=${DB_TYPE:-mysql}
         DB_HOST=${DB_HOST:-${MYSQL_PORT_3306_TCP_ADDR}}
@@ -76,16 +72,11 @@ do
 done
 echo "DB onnection is ok"
 
-userTable=$(echo "show tables;" | mysql -h ${DB_HOST} -P ${DB_PORT} -u ${DB_USER} ${DB_PASS:+-p$DB_PASS} ${DB_NAME} | grep mail_users)
-
-if [ "$userTable" != "" ];
-then
-  MAIL_FORWARD_TABLE="mail_forwards"
-  MAIL_USER_TABLE="mail_users"
-fi
-
-export MAIL_FORWARD_TABLE
+#Table setup
+MAIL_USER_TABLE=$(echo "show tables;" | mysql -h ${DB_HOST} -P ${DB_PORT} -u ${DB_USER} ${DB_PASS:+-p$DB_PASS} ${DB_NAME} | grep mail_user)
 export MAIL_USER_TABLE
+MAIL_FORWARD_TABLE=$(echo "show tables;" | mysql -h ${DB_HOST} -P ${DB_PORT} -u ${DB_USER} ${DB_PASS:+-p$DB_PASS} ${DB_NAME} | grep mail_forward)
+export MAIL_FORWARD_TABLE
 
 cp -rf /etc/postfixtemplate/* /etc/postfix/
 chmod 0644 "/etc/postfix/main.cf"
