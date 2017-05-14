@@ -11,6 +11,7 @@ Last Changes
   - dkim folder needs to be mounted on rspamd now:
     - ```- ./data/dkim:/dkim```
   - Script add-domain.sh is updated to use rspamd container.
+  - move whitelist.map in config/maps/ to greylist-ip-whitelist.map
 
 - Limit Configuration for Dovecot(06-05-2017):
   - example in docker-compose.yml on github repo
