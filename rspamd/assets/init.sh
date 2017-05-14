@@ -17,8 +17,12 @@ then
     echo "172.17.0.0/16" >> /maps/whitelist.map
 fi
 
-chown 106:108 /var/lib/rspamd -R
-chown 106:108 /maps -R
+rspamUser=$(grep rspamd /etc/passwd | cut -d: -f3)
+rspamGroup=$(grep rspamd /etc/passwd | cut -d: -f4)
+
+chown $rspamUser:$rspamGroup /var/lib/rspamd -R
+chown $rspamUser:$rspamGroup /maps -R
+chown $rspamUser:$rspamGroup /dkim -R
 
 rm -f /var/run/rsyslogd.pid
 

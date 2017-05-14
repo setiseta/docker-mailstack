@@ -15,7 +15,7 @@ if [ -z "$domain" ]; then
 	exit 1
 fi
 
-result=$(docker exec -it mailstack-rmilter /keygen.sh "$domain")
+result=$(docker exec -it mailstack-rspamd /keygen.sh "$domain")
 status=$?
 echo "$result"
 

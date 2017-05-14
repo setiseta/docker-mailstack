@@ -6,6 +6,12 @@ Mailstack based on docker images with dovecot, postfix, rmilter, rspamd
 ---
 Last Changes
 ===
+- Big config rework (14-05-2017):
+  - DKIM Signing is done on rspamd now.
+  - dkim folder needs to be mounted on rspamd now:
+    - ```- ./data/dkim:/dkim```
+  - Script add-domain.sh is updated to use rspamd container.
+
 - Limit Configuration for Dovecot(06-05-2017):
   - example in docker-compose.yml on github repo
   - new environment Variables

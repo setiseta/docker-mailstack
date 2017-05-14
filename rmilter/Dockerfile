@@ -3,7 +3,7 @@ MAINTAINER Seti <seti@setadesign.net>
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV UBUNTU_NAME xenial
-COPY assets/keygen.sh /
+
 COPY assets/init.sh /
 RUN apt-get update && apt-get install -y wget opendkim \
     opendkim-tools openssl rsyslog &&\
