@@ -18,4 +18,5 @@ public=$(echo $result | cut -d "=" -f 4 | cut -d '"' -f 1)
 >&2 echo "---------"
 
 chown _rspamd:_rspamd -R /dkim
-chmod 0600 -R /dkim
+chmod 0600 /dkim/*
+chmod 0700  /dkim
