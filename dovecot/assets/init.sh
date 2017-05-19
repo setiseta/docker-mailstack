@@ -75,7 +75,11 @@ export MAIL_USER_TABLE
 
 #LIMITS
 PROCESSLIMIT=${PROCESSLIMIT:-100}
+export PROCESSLIMIT
+AVAILABLEPROCESS=$(( PROCESSLIMIT / 10 ))
+export AVAILABLEPROCESS
 CLIENTLIMIT=${CLIENTLIMIT:-500}
+export CLIENTLIMIT
 
 cp -rf /etc/dovecottemplate/* /etc/dovecot/
 # Substitute configuration
