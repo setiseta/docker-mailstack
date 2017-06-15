@@ -7,7 +7,7 @@ ENV UBUNTU_NAME xenial
 COPY assets/keygen.sh /
 COPY assets/init.sh /init.sh
 
-RUN mkdir /dkim && mkdir /maps && \
+RUN mkdir /dkim /maps /run/rspamd && \
     apt-get update && apt-get install -y wget rsyslog dnsutils && \
     wget -O- https://rspamd.com/apt-stable/gpg.key | apt-key add - && \
     echo "deb http://rspamd.com/apt-stable/ $UBUNTU_NAME main" > /etc/apt/sources.list.d/rspamd.list && \
