@@ -50,15 +50,6 @@ services:
             - frontend
             - default
 
-    rmilter:
-        image: seti/mailstack-rmilter
-        restart: always
-        container_name: mailstack-rmilter
-        links:
-            - redis
-            - rspamd
-            - clamav
-
     amavis:
         image: spacecowboy/amavis
         hostname: amavis.{{ MAIN_DOMAIN }}

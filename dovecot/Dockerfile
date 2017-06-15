@@ -20,4 +20,6 @@ EXPOSE 993
 EXPOSE 110
 EXPOSE 995
 
+VOLUME ["/certs", "/mail"]
+
 CMD ["/init.sh"]

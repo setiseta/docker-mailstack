@@ -85,7 +85,7 @@ lmtp_tls_mandatory_ciphers = high
 ###############################
 milter_default_action = accept
 milter_mail_macros =  i {mail_addr} {client_addr} {client_name} {auth_authen}
-smtpd_milters = { inet:rmilter:9900, protocol=6, default_action=accept }
+smtpd_milters = { inet:rspamd:11332, protocol=6, default_action=accept }
 #{ inet:dkim:8891, protocol=2, default_action=accept },
 #non_smtpd_milters = { inet:dkim:8891, protocol=2, default_action=accept }
 

@@ -3,10 +3,6 @@ services:
     rspamd:
         build: ./rspamd
         image: seti/mailstack-rspamd
-    rmilter:
-        build: ./rmilter
-        image: seti/mailstack-rmilter
-        container_name: mailstack-rmilter
     dovecot:
         build: ./dovecot
         image: seti/mailstack-dovecot

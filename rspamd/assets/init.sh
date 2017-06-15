@@ -23,7 +23,7 @@ rspamGroup=$(grep rspamd /etc/passwd | cut -d: -f4)
 chown $rspamUser:$rspamGroup /var/lib/rspamd -R
 chown $rspamUser:$rspamGroup /maps -R
 chown $rspamUser:$rspamGroup /dkim -R
-chmod 0600 /dkim/*
+chmod 0600 /dkim -R
 chmod 0700 /dkim
 
 rm -f /var/run/rsyslogd.pid
