@@ -14,3 +14,6 @@ user_query = \
 	CONCAT('*:storage=', quota, 'M') as quota_rule \
    FROM {{ MAIL_USER_TABLE }} \
   WHERE email = '%u'
+
+#iterate query for doveadm commands
+iterate_query = SELECT email AS user FROM mail_users
