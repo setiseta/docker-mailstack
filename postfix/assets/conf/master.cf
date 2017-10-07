@@ -45,7 +45,7 @@ scache    unix  -       -       n       -       1       scache
 #AMAVIS#    -o smtp_send_xforward_command=yes
 #AMAVIS#    -o disable_dns_lookups=yes
 
-0.0.0.0:10025 inet n  -       n       -       -       smtpd
+10025 inet n  -       n       -       -       smtpd
     -o content_filter=
     -o local_recipient_maps=
     -o relay_recipient_maps=
