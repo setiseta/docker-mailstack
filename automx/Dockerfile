@@ -1,8 +1,8 @@
 FROM krallin/ubuntu-tini:14.04
-MAINTAINER Seti <seti@setadesign.net>
+LABEL maintainer="seti@setadesign.net"
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV AUTOMX_VERSION 1.1.0_beta1
+ENV AUTOMX_VERSION 1.1.2
 
 COPY assets/init.sh /init.sh
 
