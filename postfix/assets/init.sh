@@ -104,5 +104,5 @@ fi
 # Actually run Postfix
 newaliases
 rm -f /var/run/rsyslogd.pid
-/usr/lib/postfix/master &
+postfix start
 rsyslogd -n
