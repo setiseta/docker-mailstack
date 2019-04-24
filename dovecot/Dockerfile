@@ -1,4 +1,4 @@
-FROM krallin/ubuntu-tini:16.04
+FROM hectormolinero/tini
 MAINTAINER Seti <seti@setadesign.net>
 
 COPY assets/init.sh /init.sh
