@@ -7,6 +7,7 @@ ENV AUTOMX_VERSION 1.1.2
 COPY assets/init.sh /init.sh
 
 RUN apt-get update && \
+	apt dist-upgrade && \
 	apt-get install -y wget apache2 libapache2-mod-wsgi-py3 python3-dateutil python-ipaddr openssl python3-lxml bsdmainutils dnsutils && \
 	mkdir -p /usr/lib/automx && \
 	a2enmod wsgi && a2dissite 000-default && \

@@ -3,6 +3,7 @@ MAINTAINER Seti <seti@setadesign.net>
 
 COPY assets/init.sh /init.sh
 RUN apt-get update && \
+	apt dist-upgrade && \
 	apt-get install -y \
 		dovecot-core \
 		dovecot-mysql mysql-client \

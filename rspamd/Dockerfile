@@ -8,7 +8,7 @@ COPY assets/keygen.sh /
 COPY assets/init.sh /init.sh
 
 RUN mkdir /dkim /maps /run/rspamd && \
-    apt-get update && apt-get install -y wget rsyslog dnsutils && \
+    apt-get update && apt dist-upgrade && apt-get install -y wget rsyslog dnsutils && \
     wget -O- https://rspamd.com/apt-stable/gpg.key | apt-key add - && \
     echo "deb http://rspamd.com/apt-stable/ $UBUNTU_NAME main" > /etc/apt/sources.list.d/rspamd.list && \
     echo "deb-src http://rspamd.com/apt-stable/ $UBUNTU_NAME main" >> /etc/apt/sources.list.d/rspamd.list && \
