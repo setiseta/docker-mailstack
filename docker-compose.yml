@@ -14,7 +14,7 @@ services:
             - default
 
     mysql:
-        image: mysql
+        image: mysql:5.7
         restart: always
         container_name: mailstack-db
         volumes:
@@ -99,7 +99,6 @@ services:
         links:
             - mysql
             - dovecot
-            - rmilter
 
     rainloop:
         image: runningman84/rainloop
