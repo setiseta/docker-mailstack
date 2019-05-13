@@ -1,8 +1,9 @@
-FROM krallin/ubuntu-tini:16.04
+FROM hectormolinero/tini
 MAINTAINER Seti <seti@setadesign.net>
 
 COPY assets/init.sh /init.sh
 RUN apt-get update && \
+	apt-get dist-upgrade -y && \
 	apt-get install -y \
 		dovecot-core \
 		dovecot-mysql mysql-client \

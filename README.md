@@ -6,6 +6,7 @@ Mailstack based on docker images with dovecot, postfix, rmilter, rspamd
 ---
 Last Changes
 ===
+- [2019/04/03] fix postfix startup
 - older changes are moved to [changelog.md](https://github.com/setiseta/docker-mailstack/blob/master/changelog.md) on git repo.
 - RMilter is now not used anymore as of Rspamd 1.6 its obsolete (15-06-2017)
 
