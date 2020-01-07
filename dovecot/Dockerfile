@@ -1,5 +1,5 @@
-FROM hectormolinero/tini
-MAINTAINER Seti <seti@setadesign.net>
+FROM seti/tini
+LABEL maintainer="Seti <seti@setadesign.net>"
 
 COPY assets/init.sh /init.sh
 RUN apt-get update && \

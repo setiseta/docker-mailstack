@@ -1,6 +1,5 @@
-FROM krallin/ubuntu-tini:16.04
-FROM hectormolinero/tini
-MAINTAINER Seti <seti@setadesign.net>
+FROM seti/tini
+LABEL maintainer="Seti <seti@setadesign.net>"
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV UBUNTU_NAME bionic

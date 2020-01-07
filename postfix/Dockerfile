@@ -1,5 +1,5 @@
 FROM alpine
-MAINTAINER Seti <seti@setadesign.net>
+LABEL maintainer="Seti <seti@setadesign.net>"
 
 RUN apk add --update --no-cache tini postfix postfix-mysql rsyslog bash mysql-client && \
 	mkdir /mail && chmod 0750 /mail && \

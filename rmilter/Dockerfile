@@ -1,5 +1,5 @@
 FROM krallin/ubuntu-tini:16.04
-MAINTAINER Seti <seti@setadesign.net>
+LABEL maintainer="Seti <seti@setadesign.net>"
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV UBUNTU_NAME xenial
